@@ -1,0 +1,40 @@
+/* Import font for Stellar Design System */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Inconsolata:wght@500&display=swap");
+
+/* Custom Gray Theme - use --custom- prefix to avoid conflicts with Stellar Design System */
+:root {
+  /* Gray color palette */
+  --custom-gray-50: #f9fafb;
+  --custom-gray-100: #f3f4f6;
+  --custom-gray-200: #e5e7eb;
+  --custom-gray-300: #d1d5db;
+  --custom-gray-400: #9ca3af;
+  --custom-gray-500: #6b7280;
+  --custom-gray-600: #4b5563;
+  --custom-gray-700: #374151;
+  --custom-gray-800: #1f2937;
+  --custom-gray-900: #111827;
+
+  /* Primary colors - gray based */
+  --custom-primary: #4b5563;
+  --custom-primary-hover: #374151;
+  --custom-primary-light: #9ca3af;
+
+  /* Background colors */
+  --custom-background: #ffffff;
+  --custom-background-secondary: #f9fafb;
+  --custom-background-tertiary: #f3f4f6;
+
+  /* Text colors */
+  --custom-text-primary: #111827;
+  --custom-text-secondary: #6b7280;
+  --custom-text-tertiary: #9ca3af;
+
+  /* Border colors */
+  --custom-border: #e5e7eb;
+  --custom-border-hover: #d1d5db;
+}
+
+body.sds-theme-light {
+  background-color: var(--custom-background-secondary);
+}
