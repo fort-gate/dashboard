@@ -33,8 +33,8 @@ if (typeof window !== 'undefined') {
 
 export const networks = {
   standalone: {
-    networkPassphrase: "Standalone Network ; February 2017",
-    contractId: "CCPPFMB3HCNL7EEESYQCJJC7U5AG6F4Y4F3UTY3QEZENN5QO3FRL2EXT",
+    networkPassphrase: "Test SDF Network ; September 2015",
+    contractId: "CDR77FU73UHXJMAVIUSEA2OI6T4R5XYA7BZTILRBKMIJOAUR3CVM7NIT",
   }
 } as const
 
@@ -43,7 +43,7 @@ export interface Client {
   /**
    * Construct and simulate a initialize transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
    */
-  initialize: ({owner}: {owner: string}, options?: {
+  initialize: (options?: {
     /**
      * The fee to pay for the transaction. Default: BASE_FEE
      */
@@ -121,9 +121,9 @@ export interface Client {
   }) => Promise<AssembledTransaction<null>>
 
   /**
-   * Construct and simulate a create_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+   * Construct and simulate a create_max_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
    */
-  create_policy: ({protocol_id, max_amount}: {protocol_id: string, max_amount: i128}, options?: {
+  create_max_amount_policy: ({protocol_id, max_amount}: {protocol_id: string, max_amount: i128}, options?: {
     /**
      * The fee to pay for the transaction. Default: BASE_FEE
      */
@@ -141,9 +141,9 @@ export interface Client {
   }) => Promise<AssembledTransaction<null>>
 
   /**
-   * Construct and simulate a get_owner transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+   * Construct and simulate a create_min_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
    */
-  get_owner: (options?: {
+  create_min_amount_policy: ({protocol_id, min_amount}: {protocol_id: string, min_amount: i128}, options?: {
     /**
      * The fee to pay for the transaction. Default: BASE_FEE
      */
@@ -158,7 +158,87 @@ export interface Client {
      * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
      */
     simulate?: boolean;
-  }) => Promise<AssembledTransaction<string>>
+  }) => Promise<AssembledTransaction<null>>
+
+  /**
+   * Construct and simulate a enable_max_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+   */
+  enable_max_amount_policy: ({protocol_id}: {protocol_id: string}, options?: {
+    /**
+     * The fee to pay for the transaction. Default: BASE_FEE
+     */
+    fee?: number;
+
+    /**
+     * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+     */
+    timeoutInSeconds?: number;
+
+    /**
+     * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+     */
+    simulate?: boolean;
+  }) => Promise<AssembledTransaction<null>>
+
+  /**
+   * Construct and simulate a disable_max_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+   */
+  disable_max_amount_policy: ({protocol_id}: {protocol_id: string}, options?: {
+    /**
+     * The fee to pay for the transaction. Default: BASE_FEE
+     */
+    fee?: number;
+
+    /**
+     * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+     */
+    timeoutInSeconds?: number;
+
+    /**
+     * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+     */
+    simulate?: boolean;
+  }) => Promise<AssembledTransaction<null>>
+
+  /**
+   * Construct and simulate a enable_min_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+   */
+  enable_min_amount_policy: ({protocol_id}: {protocol_id: string}, options?: {
+    /**
+     * The fee to pay for the transaction. Default: BASE_FEE
+     */
+    fee?: number;
+
+    /**
+     * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+     */
+    timeoutInSeconds?: number;
+
+    /**
+     * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+     */
+    simulate?: boolean;
+  }) => Promise<AssembledTransaction<null>>
+
+  /**
+   * Construct and simulate a disable_min_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+   */
+  disable_min_amount_policy: ({protocol_id}: {protocol_id: string}, options?: {
+    /**
+     * The fee to pay for the transaction. Default: BASE_FEE
+     */
+    fee?: number;
+
+    /**
+     * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+     */
+    timeoutInSeconds?: number;
+
+    /**
+     * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+     */
+    simulate?: boolean;
+  }) => Promise<AssembledTransaction<null>>
 
   /**
    * Construct and simulate a get_blacklist transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
@@ -201,9 +281,9 @@ export interface Client {
   }) => Promise<AssembledTransaction<boolean>>
 
   /**
-   * Construct and simulate a get_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+   * Construct and simulate a get_max_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
    */
-  get_policy: ({protocol_id}: {protocol_id: string}, options?: {
+  get_max_amount_policy: ({protocol_id}: {protocol_id: string}, options?: {
     /**
      * The fee to pay for the transaction. Default: BASE_FEE
      */
@@ -218,7 +298,27 @@ export interface Client {
      * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
      */
     simulate?: boolean;
-  }) => Promise<AssembledTransaction<Option<i128>>>
+  }) => Promise<AssembledTransaction<Option<readonly [i128, boolean]>>>
+
+  /**
+   * Construct and simulate a get_min_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+   */
+  get_min_amount_policy: ({protocol_id}: {protocol_id: string}, options?: {
+    /**
+     * The fee to pay for the transaction. Default: BASE_FEE
+     */
+    fee?: number;
+
+    /**
+     * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+     */
+    timeoutInSeconds?: number;
+
+    /**
+     * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+     */
+    simulate?: boolean;
+  }) => Promise<AssembledTransaction<Option<readonly [i128, boolean]>>>
 
 }
 export class Client extends ContractClient {
@@ -238,15 +338,20 @@ export class Client extends ContractClient {
   }
   constructor(public readonly options: ContractClientOptions) {
     super(
-      new ContractSpec([ "AAAAAAAAAAAAAAAKaW5pdGlhbGl6ZQAAAAAAAQAAAAAAAAAFb3duZXIAAAAAAAATAAAAAA==",
+      new ContractSpec([ "AAAAAAAAAAAAAAAKaW5pdGlhbGl6ZQAAAAAAAAAAAAA=",
         "AAAAAAAAAAAAAAAIaXNfdmFsaWQAAAADAAAAAAAAAAtwcm90b2NvbF9pZAAAAAAQAAAAAAAAAAR1c2VyAAAAEwAAAAAAAAAGYW1vdW50AAAAAAALAAAAAQAAA+0AAAACAAAAAQAAAAQ=",
         "AAAAAAAAAAAAAAAQYWRkX3RvX2JsYWNrbGlzdAAAAAEAAAAAAAAABHVzZXIAAAATAAAAAA==",
         "AAAAAAAAAAAAAAAVcmVtb3ZlX2Zyb21fYmxhY2tsaXN0AAAAAAAAAQAAAAAAAAAEdXNlcgAAABMAAAAA",
-        "AAAAAAAAAAAAAAANY3JlYXRlX3BvbGljeQAAAAAAAAIAAAAAAAAAC3Byb3RvY29sX2lkAAAAABAAAAAAAAAACm1heF9hbW91bnQAAAAAAAsAAAAA",
-        "AAAAAAAAAAAAAAAJZ2V0X293bmVyAAAAAAAAAAAAAAEAAAAT",
+        "AAAAAAAAAAAAAAAYY3JlYXRlX21heF9hbW91bnRfcG9saWN5AAAAAgAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAAAAAAKbWF4X2Ftb3VudAAAAAAACwAAAAA=",
+        "AAAAAAAAAAAAAAAYY3JlYXRlX21pbl9hbW91bnRfcG9saWN5AAAAAgAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAAAAAAKbWluX2Ftb3VudAAAAAAACwAAAAA=",
+        "AAAAAAAAAAAAAAAYZW5hYmxlX21heF9hbW91bnRfcG9saWN5AAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAA=",
+        "AAAAAAAAAAAAAAAZZGlzYWJsZV9tYXhfYW1vdW50X3BvbGljeQAAAAAAAAEAAAAAAAAAC3Byb3RvY29sX2lkAAAAABAAAAAA",
+        "AAAAAAAAAAAAAAAYZW5hYmxlX21pbl9hbW91bnRfcG9saWN5AAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAA=",
+        "AAAAAAAAAAAAAAAZZGlzYWJsZV9taW5fYW1vdW50X3BvbGljeQAAAAAAAAEAAAAAAAAAC3Byb3RvY29sX2lkAAAAABAAAAAA",
         "AAAAAAAAAAAAAAANZ2V0X2JsYWNrbGlzdAAAAAAAAAAAAAABAAAD6gAAABM=",
         "AAAAAAAAAAAAAAAOaXNfYmxhY2tsaXN0ZWQAAAAAAAEAAAAAAAAABHVzZXIAAAATAAAAAQAAAAE=",
-        "AAAAAAAAAAAAAAAKZ2V0X3BvbGljeQAAAAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAEAAAPoAAAACw==" ]),
+        "AAAAAAAAAAAAAAAVZ2V0X21heF9hbW91bnRfcG9saWN5AAAAAAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAEAAAPoAAAD7QAAAAIAAAALAAAAAQ==",
+        "AAAAAAAAAAAAAAAVZ2V0X21pbl9hbW91bnRfcG9saWN5AAAAAAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAEAAAPoAAAD7QAAAAIAAAALAAAAAQ==" ]),
       options
     )
   }
@@ -255,10 +360,15 @@ export class Client extends ContractClient {
         is_valid: this.txFromJSON<readonly [boolean, u32]>,
         add_to_blacklist: this.txFromJSON<null>,
         remove_from_blacklist: this.txFromJSON<null>,
-        create_policy: this.txFromJSON<null>,
-        get_owner: this.txFromJSON<string>,
+        create_max_amount_policy: this.txFromJSON<null>,
+        create_min_amount_policy: this.txFromJSON<null>,
+        enable_max_amount_policy: this.txFromJSON<null>,
+        disable_max_amount_policy: this.txFromJSON<null>,
+        enable_min_amount_policy: this.txFromJSON<null>,
+        disable_min_amount_policy: this.txFromJSON<null>,
         get_blacklist: this.txFromJSON<Array<string>>,
         is_blacklisted: this.txFromJSON<boolean>,
-        get_policy: this.txFromJSON<Option<i128>>
+        get_max_amount_policy: this.txFromJSON<Option<readonly [i128, boolean]>>,
+        get_min_amount_policy: this.txFromJSON<Option<readonly [i128, boolean]>>
   }
 }

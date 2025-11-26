@@ -33,10 +33,10 @@ impl AbstractContract {
     ) -> CheckResult {
         spender.require_auth();
 
-        let protocol_id = String::from_str(&env, "test_protocol");
+        let protocol_id = String::from_str(&env, "blend_protocol");
     
         // The hardcoded address of the checker contract
-        let checker_address = Address::from_str(&env, "CBWCZP23O2R5HCSRNZQLMW3LBLJFFFAVEXPAFNZ2C3V3FWUVV3KCPDFH");
+        let checker_address = Address::from_str(&env, "CDR77FU73UHXJMAVIUSEA2OI6T4R5XYA7BZTILRBKMIJOAUR3CVM7NIT");
         
         // Create a client to interface with the checker contract
         let checker_client = CheckerContractClient::new(&env, &checker_address);
@@ -62,7 +62,7 @@ impl AbstractContract {
     /// Simple check function that only validates (backwards compatibility)
     pub fn check(env: Env, protocol_id: String, user: Address, amount: i128) -> (bool, u32) {
         // The hardcoded address of the checker contract
-        let checker_address = Address::from_str(&env, "CBWCZP23O2R5HCSRNZQLMW3LBLJFFFAVEXPAFNZ2C3V3FWUVV3KCPDFH");
+        let checker_address = Address::from_str(&env, "CDR77FU73UHXJMAVIUSEA2OI6T4R5XYA7BZTILRBKMIJOAUR3CVM7NIT");
         
         // Create a client to interface with the checker contract
         let checker_client = CheckerContractClient::new(&env, &checker_address);
