@@ -13,7 +13,7 @@ interface Policy {
   enabled: boolean;
 }
 
-const Home: React.FC = () => {
+const GovernancePolicies: React.FC = () => {
   const { signTransaction, address } = useWallet();
   const [policies, setPolicies] = useState<Policy[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -319,7 +319,7 @@ const Home: React.FC = () => {
     <Layout.Content>
       <Layout.Inset>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
-          <h1 style={{ fontSize: "24px", fontWeight: 600, color: "var(--custom-text-primary)" }}>Policies</h1>
+          <h1 style={{ fontSize: "24px", fontWeight: 600, color: "var(--custom-text-primary)" }}>Políticas de Gobernanza</h1>
           <button
             onClick={() => setIsEditModalOpen(true)}
             style={{
@@ -412,17 +412,6 @@ const Home: React.FC = () => {
                     >
                       STATUS
                     </th>
-                    <th
-                      style={{
-                        textAlign: "left",
-                        padding: "1rem",
-                        fontWeight: "bold",
-                        fontSize: "14px",
-                        color: "var(--custom-text-secondary)",
-                      }}
-                    >
-                      ACTIONS
-                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -440,42 +429,46 @@ const Home: React.FC = () => {
                       </td>
                       <td style={{ padding: "1rem", color: "var(--custom-text-primary)", fontWeight: 500 }}>{policy.policyValue} XLM</td>
                       <td style={{ padding: "1rem" }}>
-                        <span
-                          style={{
-                            padding: "0.25rem 0.75rem",
-                            borderRadius: "12px",
-                            fontSize: "12px",
-                            fontWeight: 600,
-                            backgroundColor: policy.enabled ? "#10b981" : "#6b7280",
-                            color: "#ffffff",
-                          }}
-                        >
-                          {policy.enabled ? "Enabled" : "Disabled"}
-                        </span>
-                      </td>
-                      <td style={{ padding: "1rem" }}>
-                        <button
-                          onClick={() => handleTogglePolicy(policy.policyType, policy.enabled)}
-                          style={{
-                            padding: "0.5rem 1rem",
+                        <label style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          cursor: "pointer",
+                          gap: "0.5rem"
+                        }}>
+                          <div
+                            style={{
+                              position: "relative",
+                              width: "44px",
+                              height: "24px",
+                              backgroundColor: policy.enabled ? "#10b981" : "#d1d5db",
+                              borderRadius: "12px",
+                              transition: "background-color 0.2s ease",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => handleTogglePolicy(policy.policyType, policy.enabled)}
+                          >
+                            <div
+                              style={{
+                                position: "absolute",
+                                top: "2px",
+                                left: policy.enabled ? "22px" : "2px",
+                                width: "20px",
+                                height: "20px",
+                                backgroundColor: "#ffffff",
+                                borderRadius: "50%",
+                                transition: "left 0.2s ease",
+                                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+                              }}
+                            />
+                          </div>
+                          <span style={{
                             fontSize: "13px",
-                            fontWeight: 600,
-                            backgroundColor: policy.enabled ? "#ef4444" : "#10b981",
-                            color: "#ffffff",
-                            border: "none",
-                            borderRadius: "6px",
-                            cursor: "pointer",
-                            transition: "all 0.2s ease",
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.opacity = "0.8";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.opacity = "1";
-                          }}
-                        >
-                          {policy.enabled ? "Disable" : "Enable"}
-                        </button>
+                            fontWeight: 500,
+                            color: policy.enabled ? "#10b981" : "var(--custom-text-secondary)"
+                          }}>
+                            {policy.enabled ? "Enabled" : "Disabled"}
+                          </span>
+                        </label>
                       </td>
                     </tr>
                   ))}
@@ -700,4 +693,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default GovernancePolicies;

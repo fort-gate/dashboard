@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
 export const networks = {
     standalone: {
         networkPassphrase: "Standalone Network ; February 2017",
-        contractId: "CCPPFMB3HCNL7EEESYQCJJC7U5AG6F4Y4F3UTY3QEZENN5QO3FRL2EXT",
+        contractId: "CDR77FU73UHXJMAVIUSEA2OI6T4R5XYA7BZTILRBKMIJOAUR3CVM7NIT",
     }
 };
 export class Client extends ContractClient {
@@ -21,15 +21,20 @@ export class Client extends ContractClient {
         return ContractClient.deploy(null, options);
     }
     constructor(options) {
-        super(new ContractSpec(["AAAAAAAAAAAAAAAKaW5pdGlhbGl6ZQAAAAAAAQAAAAAAAAAFb3duZXIAAAAAAAATAAAAAA==",
+        super(new ContractSpec(["AAAAAAAAAAAAAAAKaW5pdGlhbGl6ZQAAAAAAAAAAAAA=",
             "AAAAAAAAAAAAAAAIaXNfdmFsaWQAAAADAAAAAAAAAAtwcm90b2NvbF9pZAAAAAAQAAAAAAAAAAR1c2VyAAAAEwAAAAAAAAAGYW1vdW50AAAAAAALAAAAAQAAA+0AAAACAAAAAQAAAAQ=",
             "AAAAAAAAAAAAAAAQYWRkX3RvX2JsYWNrbGlzdAAAAAEAAAAAAAAABHVzZXIAAAATAAAAAA==",
             "AAAAAAAAAAAAAAAVcmVtb3ZlX2Zyb21fYmxhY2tsaXN0AAAAAAAAAQAAAAAAAAAEdXNlcgAAABMAAAAA",
-            "AAAAAAAAAAAAAAANY3JlYXRlX3BvbGljeQAAAAAAAAIAAAAAAAAAC3Byb3RvY29sX2lkAAAAABAAAAAAAAAACm1heF9hbW91bnQAAAAAAAsAAAAA",
-            "AAAAAAAAAAAAAAAJZ2V0X293bmVyAAAAAAAAAAAAAAEAAAAT",
+            "AAAAAAAAAAAAAAAYY3JlYXRlX21heF9hbW91bnRfcG9saWN5AAAAAgAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAAAAAAKbWF4X2Ftb3VudAAAAAAACwAAAAA=",
+            "AAAAAAAAAAAAAAAYY3JlYXRlX21pbl9hbW91bnRfcG9saWN5AAAAAgAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAAAAAAKbWluX2Ftb3VudAAAAAAACwAAAAA=",
+            "AAAAAAAAAAAAAAAYZW5hYmxlX21heF9hbW91bnRfcG9saWN5AAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAA=",
+            "AAAAAAAAAAAAAAAZZGlzYWJsZV9tYXhfYW1vdW50X3BvbGljeQAAAAAAAAEAAAAAAAAAC3Byb3RvY29sX2lkAAAAABAAAAAA",
+            "AAAAAAAAAAAAAAAYZW5hYmxlX21pbl9hbW91bnRfcG9saWN5AAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAA=",
+            "AAAAAAAAAAAAAAAZZGlzYWJsZV9taW5fYW1vdW50X3BvbGljeQAAAAAAAAEAAAAAAAAAC3Byb3RvY29sX2lkAAAAABAAAAAA",
             "AAAAAAAAAAAAAAANZ2V0X2JsYWNrbGlzdAAAAAAAAAAAAAABAAAD6gAAABM=",
             "AAAAAAAAAAAAAAAOaXNfYmxhY2tsaXN0ZWQAAAAAAAEAAAAAAAAABHVzZXIAAAATAAAAAQAAAAE=",
-            "AAAAAAAAAAAAAAAKZ2V0X3BvbGljeQAAAAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAEAAAPoAAAACw=="]), options);
+            "AAAAAAAAAAAAAAAVZ2V0X21heF9hbW91bnRfcG9saWN5AAAAAAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAEAAAPoAAAD7QAAAAIAAAALAAAAAQ==",
+            "AAAAAAAAAAAAAAAVZ2V0X21pbl9hbW91bnRfcG9saWN5AAAAAAAAAQAAAAAAAAALcHJvdG9jb2xfaWQAAAAAEAAAAAEAAAPoAAAD7QAAAAIAAAALAAAAAQ=="]), options);
         this.options = options;
     }
     fromJSON = {
@@ -37,10 +42,15 @@ export class Client extends ContractClient {
         is_valid: (this.txFromJSON),
         add_to_blacklist: (this.txFromJSON),
         remove_from_blacklist: (this.txFromJSON),
-        create_policy: (this.txFromJSON),
-        get_owner: (this.txFromJSON),
+        create_max_amount_policy: (this.txFromJSON),
+        create_min_amount_policy: (this.txFromJSON),
+        enable_max_amount_policy: (this.txFromJSON),
+        disable_max_amount_policy: (this.txFromJSON),
+        enable_min_amount_policy: (this.txFromJSON),
+        disable_min_amount_policy: (this.txFromJSON),
         get_blacklist: (this.txFromJSON),
         is_blacklisted: (this.txFromJSON),
-        get_policy: (this.txFromJSON)
+        get_max_amount_policy: (this.txFromJSON),
+        get_min_amount_policy: (this.txFromJSON)
     };
 }

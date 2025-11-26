@@ -7,16 +7,14 @@ export * as rpc from '@stellar/stellar-sdk/rpc';
 export declare const networks: {
     readonly standalone: {
         readonly networkPassphrase: "Standalone Network ; February 2017";
-        readonly contractId: "CCPPFMB3HCNL7EEESYQCJJC7U5AG6F4Y4F3UTY3QEZENN5QO3FRL2EXT";
+        readonly contractId: "CDR77FU73UHXJMAVIUSEA2OI6T4R5XYA7BZTILRBKMIJOAUR3CVM7NIT";
     };
 };
 export interface Client {
     /**
      * Construct and simulate a initialize transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
      */
-    initialize: ({ owner }: {
-        owner: string;
-    }, options?: {
+    initialize: (options?: {
         /**
          * The fee to pay for the transaction. Default: BASE_FEE
          */
@@ -90,9 +88,9 @@ export interface Client {
         simulate?: boolean;
     }) => Promise<AssembledTransaction<null>>;
     /**
-     * Construct and simulate a create_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+     * Construct and simulate a create_max_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
      */
-    create_policy: ({ protocol_id, max_amount }: {
+    create_max_amount_policy: ({ protocol_id, max_amount }: {
         protocol_id: string;
         max_amount: i128;
     }, options?: {
@@ -110,9 +108,12 @@ export interface Client {
         simulate?: boolean;
     }) => Promise<AssembledTransaction<null>>;
     /**
-     * Construct and simulate a get_owner transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+     * Construct and simulate a create_min_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
      */
-    get_owner: (options?: {
+    create_min_amount_policy: ({ protocol_id, min_amount }: {
+        protocol_id: string;
+        min_amount: i128;
+    }, options?: {
         /**
          * The fee to pay for the transaction. Default: BASE_FEE
          */
@@ -125,7 +126,83 @@ export interface Client {
          * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
          */
         simulate?: boolean;
-    }) => Promise<AssembledTransaction<string>>;
+    }) => Promise<AssembledTransaction<null>>;
+    /**
+     * Construct and simulate a enable_max_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+     */
+    enable_max_amount_policy: ({ protocol_id }: {
+        protocol_id: string;
+    }, options?: {
+        /**
+         * The fee to pay for the transaction. Default: BASE_FEE
+         */
+        fee?: number;
+        /**
+         * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+         */
+        timeoutInSeconds?: number;
+        /**
+         * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+         */
+        simulate?: boolean;
+    }) => Promise<AssembledTransaction<null>>;
+    /**
+     * Construct and simulate a disable_max_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+     */
+    disable_max_amount_policy: ({ protocol_id }: {
+        protocol_id: string;
+    }, options?: {
+        /**
+         * The fee to pay for the transaction. Default: BASE_FEE
+         */
+        fee?: number;
+        /**
+         * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+         */
+        timeoutInSeconds?: number;
+        /**
+         * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+         */
+        simulate?: boolean;
+    }) => Promise<AssembledTransaction<null>>;
+    /**
+     * Construct and simulate a enable_min_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+     */
+    enable_min_amount_policy: ({ protocol_id }: {
+        protocol_id: string;
+    }, options?: {
+        /**
+         * The fee to pay for the transaction. Default: BASE_FEE
+         */
+        fee?: number;
+        /**
+         * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+         */
+        timeoutInSeconds?: number;
+        /**
+         * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+         */
+        simulate?: boolean;
+    }) => Promise<AssembledTransaction<null>>;
+    /**
+     * Construct and simulate a disable_min_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+     */
+    disable_min_amount_policy: ({ protocol_id }: {
+        protocol_id: string;
+    }, options?: {
+        /**
+         * The fee to pay for the transaction. Default: BASE_FEE
+         */
+        fee?: number;
+        /**
+         * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+         */
+        timeoutInSeconds?: number;
+        /**
+         * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+         */
+        simulate?: boolean;
+    }) => Promise<AssembledTransaction<null>>;
     /**
      * Construct and simulate a get_blacklist transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
      */
@@ -163,9 +240,9 @@ export interface Client {
         simulate?: boolean;
     }) => Promise<AssembledTransaction<boolean>>;
     /**
-     * Construct and simulate a get_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+     * Construct and simulate a get_max_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
      */
-    get_policy: ({ protocol_id }: {
+    get_max_amount_policy: ({ protocol_id }: {
         protocol_id: string;
     }, options?: {
         /**
@@ -180,7 +257,26 @@ export interface Client {
          * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
          */
         simulate?: boolean;
-    }) => Promise<AssembledTransaction<Option<i128>>>;
+    }) => Promise<AssembledTransaction<Option<readonly [i128, boolean]>>>;
+    /**
+     * Construct and simulate a get_min_amount_policy transaction. Returns an `AssembledTransaction` object which will have a `result` field containing the result of the simulation. If this transaction changes contract state, you will need to call `signAndSend()` on the returned object.
+     */
+    get_min_amount_policy: ({ protocol_id }: {
+        protocol_id: string;
+    }, options?: {
+        /**
+         * The fee to pay for the transaction. Default: BASE_FEE
+         */
+        fee?: number;
+        /**
+         * The maximum amount of time to wait for the transaction to complete. Default: DEFAULT_TIMEOUT
+         */
+        timeoutInSeconds?: number;
+        /**
+         * Whether to automatically simulate the transaction when constructing the AssembledTransaction. Default: true
+         */
+        simulate?: boolean;
+    }) => Promise<AssembledTransaction<Option<readonly [i128, boolean]>>>;
 }
 export declare class Client extends ContractClient {
     readonly options: ContractClientOptions;
@@ -200,10 +296,15 @@ export declare class Client extends ContractClient {
         is_valid: (json: string) => AssembledTransaction<readonly [boolean, number]>;
         add_to_blacklist: (json: string) => AssembledTransaction<null>;
         remove_from_blacklist: (json: string) => AssembledTransaction<null>;
-        create_policy: (json: string) => AssembledTransaction<null>;
-        get_owner: (json: string) => AssembledTransaction<string>;
+        create_max_amount_policy: (json: string) => AssembledTransaction<null>;
+        create_min_amount_policy: (json: string) => AssembledTransaction<null>;
+        enable_max_amount_policy: (json: string) => AssembledTransaction<null>;
+        disable_max_amount_policy: (json: string) => AssembledTransaction<null>;
+        enable_min_amount_policy: (json: string) => AssembledTransaction<null>;
+        disable_min_amount_policy: (json: string) => AssembledTransaction<null>;
         get_blacklist: (json: string) => AssembledTransaction<string[]>;
         is_blacklisted: (json: string) => AssembledTransaction<boolean>;
-        get_policy: (json: string) => AssembledTransaction<Option<bigint>>;
+        get_max_amount_policy: (json: string) => AssembledTransaction<Option<readonly [bigint, boolean]>>;
+        get_min_amount_policy: (json: string) => AssembledTransaction<Option<readonly [bigint, boolean]>>;
     };
 }
